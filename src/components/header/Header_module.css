@@ -6,9 +6,11 @@
     align-items: center;
    
     justify-content: space-evenly;
-    background-color: rgb(238,252,255);
+    /* background-color: rgb(238,252,255); */
+    /* background-color: #a2d2ff; */
     min-height: 85vh;
-    gap:30px;
+    gap:34px;
+    background-color: teal;
 } 
 .container .heading{
     color:#000;
@@ -18,12 +20,18 @@
     letter-spacing: 1px;
     font-size: 3.1rem ;
     font-weight: bold;
+    font-family :cursive;
+    color:azure;
 }
 
 .heading span{
     background-clip: text;
-    background-image: linear-gradient(to right, #239ce2 , #1369b9);
-    color:transparent;
+    /* background-image: linear-gradient(to right, #239ce2 , #1369b9); */
+    /* background-image: linear-gradient(to right, #1aa1e1 , #389136); */
+    /* color:transparent; */
+    background-image: linear-gradient(to right, #1eb2df , #f7fbfb);
+    color: transparent;
+    font-family: monospace;
 }
 
 .right img{

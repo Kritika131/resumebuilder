@@ -41,7 +41,7 @@ const Editor = (props) => {
     //---creating function which generate sections body ------------------------------
     // --->creating work experience section                                           
     const workExpBody = (
-      <div className="details">
+      <div className="detail">
         <div className="row">
           <InputControl
             label="Title"

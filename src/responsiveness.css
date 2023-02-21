@@ -1,0 +1,52 @@
+/* header--- */
+@media (min-width:412px) and (max-width:750px){
+.container{
+    flex-direction: column;
+    min-height: 70vh;
+}
+.container .heading{
+    letter-spacing:2px;
+    line-height: 4rem;;
+}
+/* -----  */
+.containers{
+    padding:20px;
+    padding-top:0px;
+}
+.containers .heading{
+    font-size:2.5rem;
+    font-family: cursive;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.editor-container{
+    min-width: 530px;
+    max-width: 600px;
+}
+.input-container{
+    flex-direction: column;
+}
+.body button{
+    width:100%;
+    font-weight: 600;
+    padding:10px 16px;
+    font-size: 1.3rem;
+}
+label{
+    font-size: 1.2rem;
+}
+input{
+    font-size:1.1rem;
+}
+
+/* .resume-container{
+    min-width:545px;
+    max-width:650px;
+    min-height: 700px;
+    padding:15px;
+    margin-left: 15px;
+} */
+.detail .row{
+    flex-direction: column;
+}
+}
