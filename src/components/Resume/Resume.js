@@ -237,21 +237,16 @@ const Resume = forwardRef((props,ref) => {
         <div className="subHeading">{info.basicInfo?.detail?.title} </div>
 
         <div className="links">
-                {
-                    info.basicInfo?.detail?.email &&
+                { info.basicInfo?.detail?.email &&
                 <a className="link" type="email">
-                <AtSign/>{info.basicInfo?.detail?.email}</a>
+                <AtSign/>{info.basicInfo?.detail?.email}</a> }
+                { info.basicInfo?.detail?.phone &&
+                 <a className="link"><Phone/>{info.basicInfo?.detail?.phone}</a>
                 }
-                {
-                    info.basicInfo?.detail?.phone &&
-                  <a className="link"><Phone/>{info.basicInfo?.detail?.phone}</a>
-                }
-                {
-                    info.basicInfo?.detail?.linkedin &&
+                { info.basicInfo?.detail?.linkedin &&
                  <a className="link"><Linkedin/>{info.basicInfo?.detail?.linkedin}</a>
                 }
-                {
-                    info.basicInfo?.detail?.github && 
+                { info.basicInfo?.detail?.github && 
                    <a className="link"><GitHub/>{info.basicInfo?.detail?.github}</a>
                 }
         </div>

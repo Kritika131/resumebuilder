@@ -585,15 +585,13 @@ const Editor = (props) => {
             <InputControl label="Title" placeholder="Enter section title" value={sectionTitle} onChange = {(event)=>setSectionTitle(event.target.value)}/>
              
              {/* --creating chip for adding more fields  */}
-             <div className="chips">
-             
+             <div className="chips">             
               {
                 activeInformation?.details ?
                 activeInformation?.details?.map((item,index)=>(
                   <div className={`chip ${activeDetailIndex===index ? "active" :""}`} 
                   key={item.title+index}
-                  onClick={()=>setActiveDetailIndex(index)}
-                  >
+                  onClick={()=>setActiveDetailIndex(index)}>
                     <p>{sections[activeSectionKey]} {index+1}</p>
                     <X onClick={(event)=>{
                       event.stopPropagation();
