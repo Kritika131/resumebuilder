@@ -1,7 +1,7 @@
 import React from 'react'
 import resumeSvg from '../../assets/resumeimg.png'
 import { useDarkMode } from '../../DarkModeContext'
-import { Moon, Sun } from 'react-feather'
+import { Moon, Sun } from 'lucide-react'
 import "./Header_module.css"
 
 const Header = () => {

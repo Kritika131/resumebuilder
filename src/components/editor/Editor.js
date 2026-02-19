@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import InputControl from '../inputControl/InputControl';
 import "./editor.css"
-import { X } from 'react-feather';
+import { X, Camera, Trash2 } from 'lucide-react';
 
 const Editor = (props) => {
     const sections = props.sections;
@@ -29,6 +29,32 @@ const Editor = (props) => {
       phone:activeInformation?.detail?.phone || "",
       email:activeInformation?.detail?.email || "",
     });
+
+    // photo upload
+    const fileInputRef = useRef();
+    const [profilePhoto, setProfilePhoto] = useState(
+      information[sections.basicInfo]?.detail?.photo || ""
+    );
+
+    const handlePhotoUpload = (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) return;
+      if (file.size > 500 * 1024) {
+        alert("Image size should be less than 500KB");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePhoto(reader.result);
+      };
+      reader.readAsDataURL(file);
+    };
+
+    const handleRemovePhoto = () => {
+      setProfilePhoto("");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    };
 
     // validation errors state
     const [errors,setErrors]=useState({});
@@ -260,6 +286,36 @@ const Editor = (props) => {
     );
     const basicInfoBody=(
       <div className="detail">
+        <div className="photo-upload">
+          <label className="photo-label">Profile Photo</label>
+          <div className="photo-row">
+            {profilePhoto ? (
+              <div className="photo-preview">
+                <img src={profilePhoto} alt="Profile" />
+                <button type="button" className="photo-remove" onClick={handleRemovePhoto} title="Remove photo">
+                  <Trash2 />
+                </button>
+              </div>
+            ) : (
+              <div className="photo-placeholder" onClick={() => fileInputRef.current?.click()}>
+                <Camera />
+                <span>Upload Photo</span>
+              </div>
+            )}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handlePhotoUpload}
+            />
+            {profilePhoto && (
+              <button type="button" className="photo-change" onClick={() => fileInputRef.current?.click()}>
+                Change Photo
+              </button>
+            )}
+          </div>
+        </div>
         <div className="row">
           <InputControl label="Name" placeholder="Enter your full name eg. kritika"
             value={values.name}
@@ -420,6 +476,7 @@ const Editor = (props) => {
               github:values.github,
               email:values.email,
               phone:values.phone,
+              photo:profilePhoto,
             };
             props.setInformation((prev)=>({...prev,[sections.basicInfo]
               :{...prev[sections.basicInfo],
@@ -546,6 +603,7 @@ const Editor = (props) => {
       setActiveDetailIndex(0);
       setErrors({});
       // updating information when we switch on next section 
+      setProfilePhoto(activeInfo?.detail?.photo || "");
       setValues({
         name:activeInfo?.detail?.name || "",
         overview:activeInfo?.details

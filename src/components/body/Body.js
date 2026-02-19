@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./Body_module.css"
-import { ArrowDown } from "react-feather";
+import { ArrowDown } from "lucide-react";
 import ReactToPrint from 'react-to-print';
 import Editor from '../editor/Editor';
 import Resume from '../Resume/Resume';

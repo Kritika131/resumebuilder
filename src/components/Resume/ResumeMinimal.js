@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
-import { AtSign, Calendar, GitHub, Linkedin, Paperclip, Phone } from 'react-feather';
+import { AtSign, Calendar, Github, Linkedin, Paperclip, Phone } from 'lucide-react';
 import "./resume-minimal.css";
 
 const ResumeMinimal = forwardRef((props, ref) => {
@@ -35,6 +35,9 @@ const ResumeMinimal = forwardRef((props, ref) => {
             <div ref={containerRef} className="resume-minimal">
                 {/* Header - centered */}
                 <div className="minimal-header">
+                    {info.basicInfo?.detail?.photo && (
+                        <img className="minimal-photo" src={info.basicInfo.detail.photo} alt="Profile" />
+                    )}
                     <h1 className="minimal-name">{info.basicInfo?.detail?.name}</h1>
                     <p className="minimal-title">{info.basicInfo?.detail?.title}</p>
                     <div className="minimal-contacts">
@@ -48,7 +51,7 @@ const ResumeMinimal = forwardRef((props, ref) => {
                             <span className="minimal-contact"><Linkedin />{info.basicInfo.detail.linkedin}</span>
                         )}
                         {info.basicInfo?.detail?.github && (
-                            <span className="minimal-contact"><GitHub />{info.basicInfo.detail.github}</span>
+                            <span className="minimal-contact"><Github />{info.basicInfo.detail.github}</span>
                         )}
                     </div>
                 </div>
@@ -112,7 +115,7 @@ const ResumeMinimal = forwardRef((props, ref) => {
                                     )}
                                     {item.github && (
                                         <a className="minimal-link" href={item.github}>
-                                            <GitHub /> Source
+                                            <Github /> Source
                                         </a>
                                     )}
                                 </div>

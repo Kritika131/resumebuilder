@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
-import { AtSign, Calendar, GitHub, Linkedin, MapPin, Paperclip, Phone } from 'react-feather';
+import { AtSign, Calendar, Github, Linkedin, MapPin, Paperclip, Phone } from 'lucide-react';
 import "./resume-modern.css";
 
 const ResumeModern = forwardRef((props, ref) => {
@@ -34,6 +34,9 @@ const ResumeModern = forwardRef((props, ref) => {
             <div ref={containerRef} className="resume-modern">
                 {/* Sidebar */}
                 <div className="modern-sidebar">
+                    {info.basicInfo?.detail?.photo && (
+                        <img className="modern-photo" src={info.basicInfo.detail.photo} alt="Profile" />
+                    )}
                     <div className="modern-name">
                         <h1>{info.basicInfo?.detail?.name}</h1>
                         <p className="modern-title">{info.basicInfo?.detail?.title}</p>
@@ -58,7 +61,7 @@ const ResumeModern = forwardRef((props, ref) => {
                         )}
                         {info.basicInfo?.detail?.github && (
                             <div className="modern-contact-item">
-                                <GitHub /> <span>{info.basicInfo.detail.github}</span>
+                                <Github /> <span>{info.basicInfo.detail.github}</span>
                             </div>
                         )}
                     </div>
@@ -162,7 +165,7 @@ const ResumeModern = forwardRef((props, ref) => {
                                     )}
                                     {item.github && (
                                         <a className="modern-link" href={item.github}>
-                                            <GitHub /> {item.github}
+                                            <Github /> {item.github}
                                         </a>
                                     )}
                                     {item.points?.length > 0 && (

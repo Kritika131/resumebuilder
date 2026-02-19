@@ -19,6 +19,20 @@
   flex-direction: column;
 }
 
+.resume-container .header-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.resume-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color);
+}
+
 .resume-container .header .subHeading {
   color: var(--color);
   font-weight: 500;

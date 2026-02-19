@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect,useRef,useState } from 'react';
-import { AtSign, Calendar, GitHub, Linkedin, MapPin, Paperclip, Phone } from 'react-feather';
+import { AtSign, Calendar, Github, Linkedin, MapPin, Paperclip, Phone } from 'lucide-react';
 import "./resume-module.css";
 
 const Resume = forwardRef((props,ref) => {
@@ -233,8 +233,15 @@ const Resume = forwardRef((props,ref) => {
     <div ref={ref}>
     <div ref={containerRef} className='resume-container'>
        <div className="header">
-        <p className="heading">{info.basicInfo?.detail?.name} </p>
-        <div className="subHeading">{info.basicInfo?.detail?.title} </div>
+        <div className="header-top">
+          {info.basicInfo?.detail?.photo && (
+            <img className="resume-photo" src={info.basicInfo.detail.photo} alt="Profile" />
+          )}
+          <div>
+            <p className="heading">{info.basicInfo?.detail?.name} </p>
+            <div className="subHeading">{info.basicInfo?.detail?.title} </div>
+          </div>
+        </div>
 
         <div className="links">
                 { info.basicInfo?.detail?.email &&
@@ -247,7 +254,7 @@ const Resume = forwardRef((props,ref) => {
                  <a className="link"><Linkedin/>{info.basicInfo?.detail?.linkedin}</a>
                 }
                 { info.basicInfo?.detail?.github && 
-                   <a className="link"><GitHub/>{info.basicInfo?.detail?.github}</a>
+                   <a className="link"><Github/>{info.basicInfo?.detail?.github}</a>
                 }
         </div>
        </div>

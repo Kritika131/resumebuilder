@@ -170,6 +170,120 @@
   color: #fff;
 }
 
+/* Photo upload */
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.photo-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  letter-spacing: 0.2px;
+}
+
+.photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.photo-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px dashed var(--gray-300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: var(--gray-400);
+  background: var(--gray-50);
+}
+
+.photo-placeholder:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(13, 148, 136, 0.05);
+}
+
+.photo-placeholder svg {
+  height: 24px;
+  width: 24px;
+}
+
+.photo-placeholder span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.photo-preview {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.photo-preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gray-200);
+}
+
+.photo-remove {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e53e3e;
+  color: #fff;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition-fast);
+}
+
+.photo-remove svg {
+  height: 12px;
+  width: 12px;
+}
+
+.photo-remove:hover {
+  background: #c53030;
+  transform: scale(1.1);
+}
+
+.photo-change {
+  padding: 6px 14px !important;
+  font-size: 0.8rem !important;
+  background: var(--gray-100) !important;
+  color: var(--gray-600) !important;
+  border: 1px solid var(--gray-200) !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.photo-change:hover {
+  background: var(--gray-200) !important;
+  color: var(--gray-800) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 /* Save button */
 .body button {
   width: fit-content;
