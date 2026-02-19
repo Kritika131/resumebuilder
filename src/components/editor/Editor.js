@@ -30,6 +30,40 @@ const Editor = (props) => {
       email:activeInformation?.detail?.email || "",
     });
 
+    // validation errors state
+    const [errors,setErrors]=useState({});
+
+    // validation helper
+    const validateForm=()=>{
+      const newErrors={};
+      const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex=/^[+]?[\d\s()-]{7,15}$/;
+
+      switch(sections[activeSectionKey]){
+        case sections.basicInfo:
+          if(!values.name?.trim()) newErrors.name="Name is required";
+          if(!values.title?.trim()) newErrors.title="Title is required";
+          if(values.email && !emailRegex.test(values.email)) newErrors.email="Invalid email format";
+          if(values.phone && !phoneRegex.test(values.phone)) newErrors.phone="Invalid phone format";
+          break;
+        case sections.workExp:
+          if(!values.title?.trim()) newErrors.title="Title is required";
+          if(!values.companyName?.trim()) newErrors.companyName="Company name is required";
+          break;
+        case sections.project:
+          if(!values.title?.trim()) newErrors.title="Title is required";
+          break;
+        case sections.education:
+          if(!values.title?.trim()) newErrors.title="Title is required";
+          if(!values.college?.trim()) newErrors.college="College/School name is required";
+          break;
+        default:
+          break;
+      }
+      setErrors(newErrors);
+      return Object.keys(newErrors).length===0;
+    };
+
     // function to set points values
     const handlePointUpdate=(value,index)=>{
        const tempValues={...values};
@@ -47,6 +81,7 @@ const Editor = (props) => {
             label="Title"
             placeholder="Enter title eg. Frontend developer"
             value={values.title}
+            error={errors.title}
             onChange={(event)=>
               setValues((prev)=>({...prev,title:event.target.value})
               )
@@ -56,6 +91,7 @@ const Editor = (props) => {
             label="Company Name"
             placeholder="Enter company name eg. amazon"
             value={values.companyName}
+            error={errors.companyName}
             onChange={(event)=>
               setValues((prev)=>({...prev,companyName:event.target.value})
               )
@@ -127,6 +163,7 @@ const Editor = (props) => {
         <div className="row">
           <InputControl label="Title" placeholder="Enter title eg. Chat application"
             value={values.title}
+            error={errors.title}
             onChange={(event)=>
               setValues((prev)=>({...prev,title:event.target.value})
               )
@@ -184,24 +221,23 @@ const Editor = (props) => {
     const educationBody=(
       <div className="detail">
         <div className="row">
-        
-
           <InputControl label="Title" placeholder="Enter title eg. B-tech"
             value={values.title}
+            error={errors.title}
             onChange={(event)=>
               setValues((prev)=>({...prev,title:event.target.value})
               )
             }
-
           />
-        <InputControl label="College/School Name"
-        placeholder="Enter name of your college/school"
-        value={values.college}
-        onChange={(event)=>
+          <InputControl label="College/School Name"
+            placeholder="Enter name of your college/school"
+            value={values.college}
+            error={errors.college}
+            onChange={(event)=>
               setValues((prev)=>({...prev,college:event.target.value})
               )
             }
-        />
+          />
         </div>
         <div className="row">
           <InputControl label="Start Date" type="date" placeholder="Enter start date of this education"
@@ -227,6 +263,7 @@ const Editor = (props) => {
         <div className="row">
           <InputControl label="Name" placeholder="Enter your full name eg. kritika"
             value={values.name}
+            error={errors.name}
             onChange={(event)=>
               setValues((prev)=>({...prev,name:event.target.value})
               )
@@ -234,6 +271,7 @@ const Editor = (props) => {
           />
           <InputControl label="Title" placeholder="Enter your title eg. Frontend developer"
             value={values.title}
+            error={errors.title}
             onChange={(event)=>
               setValues((prev)=>({...prev,title:event.target.value})
               )
@@ -259,18 +297,20 @@ const Editor = (props) => {
         <div className="row">
           <InputControl label="Email" placeholder="Enter your email"
             value={values.email}
+            error={errors.email}
             onChange={(event)=>
               setValues((prev)=>({...prev,email:event.target.value})
               )
             }
           />
-          <InputControl label = "Enter phone" placeholder="Enter your phone number"
+          <InputControl label="Phone" placeholder="Enter your phone number"
             value={values.phone}
+            error={errors.phone}
             onChange={(event)=>
               setValues((prev)=>({...prev,phone:event.target.value})
               )
             }
-          /> 
+          />
         </div>
       </div>
     );
@@ -341,38 +381,35 @@ const Editor = (props) => {
       if (!details) return;
       const lastDetail =details.slice(-1)[0];  //fetching last filled detail
       if(!Object.keys(lastDetail).length) return
-      details?.push({}) //pushing empty object in details
+      const updatedDetails = [...details, {}]; // create new array instead of mutating
       props.setInformation(prev=>({
         ...prev,
         [sections[activeSectionKey]]:{
           ...information[sections[activeSectionKey]],
-          details:details,
+          details:updatedDetails,
       },
     }));
-    setActiveDetailIndex(details.length-1)
+    setActiveDetailIndex(updatedDetails.length-1)
     };
     
     const handleDeleteDetail=(index)=>{
-      const details = activeInformation?.details
-      ? [...activeInformation?.details]
-      :"";
-    if(!details)return;
-    details.splice(index,1); //deleting current element from details splice(index,NoOfElement which you want to delete)
-    props.setInformation((prev)=>({
-      ...prev,
-      [sections[activeSectionKey]]:{
-        ...information[sections[activeSectionKey]],
-        details:details,
-      },
-    }));
-    setActiveDetailIndex((prev)=>(prev===index?0:prev-1));
-
+      const details = activeInformation?.details;
+      if(!details) return;
+      const updatedDetails = details.filter((_, i) => i !== index); // use filter instead of splice
+      props.setInformation((prev)=>({
+        ...prev,
+        [sections[activeSectionKey]]:{
+          ...information[sections[activeSectionKey]],
+          details:updatedDetails,
+        },
+      }));
+      setActiveDetailIndex((prev)=>(prev===index?0:prev-1));
     }
 
     // creating function for testing purpose to check what will happen if we click save button 
     //--here we tackle or setting inforation values filled in form
     const handleSubmission=()=>{
-      // console.log(values)
+      if(!validateForm()) return;
       switch(sections[activeSectionKey]){
         case sections.basicInfo:
           {
@@ -507,6 +544,7 @@ const Editor = (props) => {
       setActiveInformation(activeInfo);
       setSectionTitle(sections[activeSectionKey]);
       setActiveDetailIndex(0);
+      setErrors({});
       // updating information when we switch on next section 
       setValues({
         name:activeInfo?.detail?.name || "",
@@ -535,8 +573,8 @@ const Editor = (props) => {
           ?activeInfo?.details[0]?.github || ""
           :activeInfo?.detail?.github || "",
         phone:activeInfo?.detail?.phone || "",
-        summary:typeof activeInfo?.detail!==Object?activeInfo.detail: "",
-        other: typeof activeInfo?.detail!==Object?activeInfo.detail: "",
+        summary:typeof activeInfo?.detail !== "object"?activeInfo.detail: "",
+        other: typeof activeInfo?.detail !== "object"?activeInfo.detail: "",
         email:activeInfo?.detail?.email || "",
       });
       

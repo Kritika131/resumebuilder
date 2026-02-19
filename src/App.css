@@ -1,5 +1,19 @@
-.App{
+.App {
   display: flex;
   flex-direction: column;
-  gap:40px;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.app-footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  border-top: 1px solid var(--gray-200);
+}
+
+.app-footer .heart {
+  color: #e53e3e;
 }

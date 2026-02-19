@@ -81,8 +81,8 @@ const Resume = forwardRef((props,ref) => {
      className={`project section ${info.project?.sectionTitle?"": "hidden"}`}>
     <div className="sectionTitle">{info.project.sectionTitle}</div>
     <div className="content">
-    {info.project?.details?.map((item)=>(
-        <div className="item">
+    {info.project?.details?.map((item, index)=>(
+        <div className="item" key={item.title || index}>
             {item.title ? <p className='title'>{item.title}</p>:(<span/>)}
             {item.link ? (
             
@@ -115,9 +115,9 @@ const Resume = forwardRef((props,ref) => {
    <div className="sectionTitle">{info.education?.sectionTitle}</div>
    <div className="content">
    {
-       info.education?.details?.map(item=>(
+       info.education?.details?.map((item, index)=>(
 
-       <div className="item">
+       <div className="item" key={item.title || index}>
        {item.title ? 
            (<p className="title">{item.title}</p>) :(<span/>)
        }
@@ -132,7 +132,7 @@ const Resume = forwardRef((props,ref) => {
        ):(<span/>)}
        {item.location ?(
            <p className="date">
-               <MapPin/> Remote
+               <MapPin/> {item.location}
            </p>
        ):(<span/>)}
        {item.points?.length > 0 ? (

@@ -4,14 +4,14 @@ import Header from "./components/header/Header";
 import Body from "./components/body/Body";
 import './responsiveness.css'
 
-const App = ()=>{
+const App = () => {
   return (
     <div className="App">
-    
-    <Header/>
-    
-    <Body/>
-  
+      <Header />
+      <Body />
+      <footer className="app-footer">
+        <p>Built with <span className="heart">&#9829;</span> | Resume Builder</p>
+      </footer>
     </div>
   )
 }

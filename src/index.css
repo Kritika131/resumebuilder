@@ -1,6 +1,183 @@
-*{
-  margin:0;
-  padding:0;
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+
+  /* Primary colors */
+  --primary: #0d9488;
+  --primary-light: #14b8a6;
+  --primary-dark: #0f766e;
+
+  /* Neutrals */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Layout */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--gray-50);
+  color: var(--gray-900);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ===== Dark Mode ===== */
+body.dark {
+  --gray-50: #0f172a;
+  --gray-100: #1e293b;
+  --gray-200: #334155;
+  --gray-300: #475569;
+  --gray-400: #64748b;
+  --gray-500: #94a3b8;
+  --gray-600: #cbd5e1;
+  --gray-700: #e2e8f0;
+  --gray-800: #f1f5f9;
+  --gray-900: #f8fafc;
+
+  background-color: var(--gray-50);
+  color: var(--gray-900);
+}
+
+/* Resume preview always stays light for print accuracy */
+body.dark .resume-container,
+body.dark .resume-modern,
+body.dark .resume-minimal {
+  background-color: #fff;
+  color: #222;
+}
+
+/* Toolbar card in dark mode */
+body.dark .toolbar {
+  background-color: var(--gray-100);
+}
+
+/* Template selector in dark mode */
+body.dark .template-selector {
+  background-color: var(--gray-200);
+}
+
+body.dark .template-btn {
+  color: var(--gray-500) !important;
+}
+
+body.dark .template-btn:hover {
+  color: var(--gray-700) !important;
+  background-color: var(--gray-300) !important;
+}
+
+body.dark .template-btn.active {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* Color swatch active in dark mode */
+body.dark .colors .active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--gray-100), 0 0 0 4px #fff;
+}
+
+/* Editor in dark mode */
+body.dark .editor-container {
+  background-color: var(--gray-100);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+body.dark .editor-container .header {
+  background: var(--gray-50);
+  border-bottom-color: var(--gray-200);
+}
+
+body.dark .editor-container .header .section {
+  color: var(--gray-500);
+}
+
+body.dark .editor-container .header .section:hover {
+  color: var(--gray-700);
+}
+
+body.dark .editor-container .header .active {
+  color: var(--primary-light);
+  border-bottom-color: var(--primary-light);
+}
+
+body.dark .body button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+body.dark input {
+  background-color: var(--gray-200);
+  border-color: var(--gray-300);
+  color: var(--gray-900);
+}
+
+body.dark input:hover {
+  border-color: var(--gray-400);
+}
+
+body.dark input:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+body.dark label {
+  color: var(--gray-600);
+}
+
+body.dark .chip {
+  background-color: var(--gray-300);
+}
+
+body.dark .chip p {
+  color: var(--gray-800);
+}
+
+body.dark .chip svg {
+  color: var(--gray-500);
+}
+
+body.dark .chips .active {
+  background-color: var(--primary);
+}
+
+body.dark .chips .active p {
+  color: #fff;
+}
+
+body.dark .chips .active svg {
+  color: rgba(255,255,255,0.8);
+}
+
+body.dark .chips .new {
+  color: var(--primary-light);
+  border-color: var(--primary-light);
 }

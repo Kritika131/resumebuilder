@@ -1,0 +1,175 @@
+.resume-minimal {
+  --color: #0d9488;
+  min-width: 700px;
+  max-width: 850px;
+  margin: 0 auto;
+  min-height: 900px;
+  box-shadow: var(--shadow-lg);
+  padding: 40px 50px;
+  font-family: 'Georgia', serif;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background-color: #fff;
+}
+
+/* Header */
+.minimal-header {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color);
+}
+
+.minimal-name {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.minimal-title {
+  color: var(--color);
+  font-size: 1rem;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.minimal-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.minimal-contact {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.minimal-contact svg {
+  height: 13px;
+  width: 13px;
+  color: var(--color);
+}
+
+/* Sections */
+.minimal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.minimal-section h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color);
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+  font-weight: 700;
+}
+
+.minimal-section p {
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.minimal-entry {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.minimal-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.minimal-entry strong {
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.minimal-company {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.minimal-location {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.minimal-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #888;
+  white-space: nowrap;
+}
+
+.minimal-date svg {
+  height: 12px;
+  width: 12px;
+}
+
+.minimal-links {
+  display: flex;
+  gap: 12px;
+}
+
+.minimal-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: var(--color);
+  text-decoration: none;
+}
+
+.minimal-link svg {
+  height: 12px;
+  width: 12px;
+}
+
+.minimal-section ul,
+.minimal-section ol {
+  padding-left: 20px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.minimal-section li {
+  margin-bottom: 2px;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-minimal {
+    min-width: 0;
+    padding: 20px;
+  }
+  .minimal-entry-row {
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .resume-minimal {
+    box-shadow: none;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
