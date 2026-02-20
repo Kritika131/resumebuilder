@@ -214,12 +214,11 @@ const Resume = forwardRef((props,ref) => {
         [sections.project,sections.education,sections.summary],
         [sections.workExp,sections.achievements,sections.other],
        ]);
-    },[]);
-    // console.log(information)
-    // creating useEffect which listen whenever source value change our operation will performed
+    },[sections.project,sections.education,sections.summary,sections.workExp,sections.achievements,sections.other]);
+
     useEffect(()=>{
-      
        swapSourceTarget(source,target);
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     },[source])
     
     useEffect(()=>{
@@ -245,16 +244,16 @@ const Resume = forwardRef((props,ref) => {
 
         <div className="links">
                 { info.basicInfo?.detail?.email &&
-                <a className="link" type="email">
+                <a className="link" href={`mailto:${info.basicInfo?.detail?.email}`}>
                 <AtSign/>{info.basicInfo?.detail?.email}</a> }
                 { info.basicInfo?.detail?.phone &&
-                 <a className="link"><Phone/>{info.basicInfo?.detail?.phone}</a>
+                 <a className="link" href={`tel:${info.basicInfo?.detail?.phone}`}><Phone/>{info.basicInfo?.detail?.phone}</a>
                 }
                 { info.basicInfo?.detail?.linkedin &&
-                 <a className="link"><Linkedin/>{info.basicInfo?.detail?.linkedin}</a>
+                 <a className="link" href={info.basicInfo?.detail?.linkedin}><Linkedin/>{info.basicInfo?.detail?.linkedin}</a>
                 }
-                { info.basicInfo?.detail?.github && 
-                   <a className="link"><Github/>{info.basicInfo?.detail?.github}</a>
+                { info.basicInfo?.detail?.github &&
+                   <a className="link" href={info.basicInfo?.detail?.github}><Github/>{info.basicInfo?.detail?.github}</a>
                 }
         </div>
        </div>

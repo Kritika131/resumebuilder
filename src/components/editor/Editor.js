@@ -593,9 +593,11 @@ const Editor = (props) => {
               }));
                 break;
               }
+        default:
+          break;
       }
     }
-    {/* //updating active section */}
+    // updating active section
     useEffect(()=>{
       const activeInfo = information[sections[activeSectionKey]]
       setActiveInformation(activeInfo);
@@ -636,9 +638,11 @@ const Editor = (props) => {
         email:activeInfo?.detail?.email || "",
       });
       
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[activeSectionKey]);
     useEffect(()=>{
       setActiveInformation(information[sections[activeSectionKey]])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[information]);
 
     useEffect(()=> {
@@ -660,6 +664,7 @@ const Editor = (props) => {
         github:activeInfo.details[activeDetailIndex]?.github || "",
         college:activeInfo.details[activeDetailIndex]?.college || "",
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[activeDetailIndex])
     
   return (
